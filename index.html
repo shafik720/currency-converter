@@ -6,6 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Currency Converter</title>
     <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="assets/fontawesome/font-awesome.css">
 </head>
 <body>
     <div class="wrapper">
@@ -16,9 +17,31 @@
         </div>
         <div class="selection-div">
             <div class="from">
-                <img src="" alt="">
+                <img src="https://flagcdn.com/48x36/us.png" alt="">
+                <select name="" id="">
+                    <option value="bdt">BDT</option>
+                    <option selected value="usd">USD</option>
+                    <option value="rs">Rs</option>
+                    
+                </select>
+            </div>
+            <div class="exchange-icon">
+                <i class="fa-solid fa-right-left"></i>
+            </div>
+            <div class="to">
+                <img src="https://flagcdn.com/48x36/bd.png" alt="">
+                <select name="" id="">
+                    <option selected value="bdt">BDT</option>
+                    <option value="usd">USD</option>
+                    <option value="rs">Rs</option>
+                    
+                </select>
             </div>
         </div>
+        <div class="exchange-rate">
+            1 USD = 90.00 BDT
+        </div>
+        <button>Get Exchange Rate</button>
     </div>
 </body>
 </html>
