@@ -29,6 +29,7 @@ body{
 .header-text{
     font-weight: 600;
     font-size: 22px;
+    margin-top: 20px;
 }
 .inter-amount{
     margin: 20px 0;
@@ -62,6 +63,7 @@ body{
     margin-top: 10px;
     border: 2px solid #ccc;
     padding: 10px;
+    border-radius: 7px;
 }
 .from img, .to img{
     width: 30px;
@@ -71,4 +73,24 @@ body{
     margin-top: 30px;
     cursor: pointer;
     font-size: 20px;
+}
+.exchange-rate{
+    width: 100%;
+    text-align: center;
+}
+.exchange-rate p {
+    font-weight: 600;
+    font-size: 20px;
+}
+.exchange-rate button{
+    display: block;
+    width: 100%;
+    height: 50px;
+    border: none;
+    outline: none;
+    background: #0673E7;
+    color: white;
+    font-size: 18px;
+    margin: 15px 0;
+    cursor: pointer;
 }
