@@ -14,6 +14,18 @@ for(let i=0; i<droplist.length; i++){
         }
         let optionTag = `<option value="${currencyCode}" ${selected}>${currencyCode}</option>`;
         droplist[i].insertAdjacentHTML('beforeend',optionTag);
+        droplist[i].addEventListener('change',e=>{
+            loadFlag(e.target)
+        })
+    }
+}
+function loadFlag(element){
+    for(currencyCode in country_list){
+        if(currencyCode == element.value){
+            let img = element.parentElement.querySelector('img');
+            img.src = `https://flagcdn.com/48x36/${country_list[currencyCode].toLowerCase()}.png`;
+            console.log(currencyCode);
+        }
     }
 }
 
@@ -33,11 +45,9 @@ function showExchangeRate(baseCode){
             interAmount.value  = 1;
             interAmountValue = 1;
         }
-        console.log(data);
         let conversionRate = data.conversion_rates[to.value];
         let exchangeAmount = (interAmount.value * conversionRate).toFixed(2);
         document.getElementById('result').innerText = `${interAmount.value} ${from.value} = ${exchangeAmount} ${to.value}`
-        console.log(exchangeAmount);
         
     });
 }
