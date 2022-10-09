@@ -3,6 +3,8 @@ let droplist = document.querySelectorAll('.selection-div select');
 let exchangeBtn = document.querySelector('.exchange-rate button');
 let from = document.querySelector('.from select');
 let to = document.querySelector('.to select');
+let fromImg = document.querySelector('.from img');
+let toImg = document.querySelector('.to img');
 
 for(let i=0; i<droplist.length; i++){
     let selected;
@@ -33,7 +35,21 @@ function loadFlag(element){
 exchangeBtn.addEventListener('click',()=>{  
     showExchangeRate();
 })
-
+function exchange(){
+    let storeValue = from.value;
+    from.value = to.value;
+    to.value = storeValue;
+    showExchangeRate();
+    for(currencyCode in country_list){
+        if(currencyCode == from.value){
+            fromImg.src = `https://flagcdn.com/48x36/${country_list[currencyCode].toLowerCase()}.png` ;
+        }
+        if(currencyCode == to.value){
+            toImg.src = `https://flagcdn.com/48x36/${country_list[currencyCode].toLowerCase()}.png` ;
+        }
+        
+    }
+}
 function showExchangeRate(baseCode){
     let url = ` https://v6.exchangerate-api.com/v6/1ae1edd2a56384f2549082e0/latest/${from.value}`;
     fetch(url)
