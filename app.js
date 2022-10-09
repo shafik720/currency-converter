@@ -18,12 +18,11 @@ for(let i=0; i<droplist.length; i++){
 }
 
 exchangeBtn.addEventListener('click',()=>{  
-    let baseCode = from.value;
-    showExchangeRate(baseCode);
+    showExchangeRate();
 })
 
 function showExchangeRate(baseCode){
-    let url = ` https://v6.exchangerate-api.com/v6/1ae1edd2a56384f2549082e0/latest/${baseCode}`;
+    let url = ` https://v6.exchangerate-api.com/v6/1ae1edd2a56384f2549082e0/latest/${from.value}`;
     fetch(url)
     .then(res=>res.json())
     .then(data=>{
@@ -34,7 +33,6 @@ function showExchangeRate(baseCode){
             interAmount.value  = 1;
             interAmountValue = 1;
         }
-        
         console.log(data);
         let conversionRate = data.conversion_rates[to.value];
         let exchangeAmount = (interAmount.value * conversionRate).toFixed(2);
@@ -43,3 +41,8 @@ function showExchangeRate(baseCode){
         
     });
 }
+
+// window.addEventListener('load',()=>{
+//     showExchangeRate();
+// })
+showExchangeRate();
