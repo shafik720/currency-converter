@@ -15,7 +15,8 @@ for(let i=0; i<droplist.length; i++){
         let optionTag = `<option value="${currencyCode}" ${selected}>${currencyCode}</option>`;
         droplist[i].insertAdjacentHTML('beforeend',optionTag);
         droplist[i].addEventListener('change',e=>{
-            loadFlag(e.target)
+            loadFlag(e.target);
+            showExchangeRate();
         })
     }
 }
