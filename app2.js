@@ -26,11 +26,12 @@ for(i=0;i<selectionList.length;i++){
         let option = `<option ${selected}>${currencyCode}</option>`
         selectionList[i].insertAdjacentHTML('beforeend',option);
         selectionList[i].addEventListener('change',(e)=>{
+            resultText.innerText = '';    
             loadFlag(e.target);
         })
     }
 }
-
+let url ;
 function loadFlag(any){
     for(currencyCode in country_list){
         if(currencyCode == any.value){
@@ -40,21 +41,41 @@ function loadFlag(any){
 }
 
 button.addEventListener('click',()=>{    
-    resultText.innerText = 'Getting Results ......';
-    let url = `https://v6.exchangerate-api.com/v6/4e52c37ac3dc20f13a920cef/latest/${from.value}`
+    resultText.innerText = 'Getting Results ......';    
 
+    url = `https://v6.exchangerate-api.com/v6/4e52c37ac3dc20f13a920cef/latest/${from.value}`;
     fetch(url)
     .then(res=>res.json())
     .then(data=>showExchange(data));
 })
 
-function showExchange(element){
-    
+function showExchange(element){    
     if(inputAmount.value == '' || inputAmount.value == 0){
         inputAmount.value = 1 ;
     }
     let totalAmount = (inputAmount.value * element.conversion_rates[to.value]).toFixed(2);
-
     resultText.innerText = ` ${inputAmount.value} ${from.value} = ${totalAmount} ${to.value}`;
-    // console.log(element.conversion_rates[to.value]);
+
+    console.log(element.conversion_rates);
+    console.log(from.value);
+}
+
+function exchange(){
+    resultText.innerText = 'Getting Results ......';    
+    let x = from.value;
+    from.value = to.value;
+    to.value = x;
+    
+    for(let currencyCode in country_list){
+        if(currencyCode == from.value){
+            document.querySelector('.from img').src = `https://flagcdn.com/48x36/${country_list[currencyCode].toLowerCase()}.png`
+        }
+        if(currencyCode == to.value){
+            document.querySelector('.to img').src = `https://flagcdn.com/48x36/${country_list[currencyCode].toLowerCase()}.png`
+        }
+    }
+    url = `https://v6.exchangerate-api.com/v6/4e52c37ac3dc20f13a920cef/latest/${from.value}`;
+    fetch(url)
+    .then(res=>res.json())
+    .then(data=>showExchange(data));
 }
