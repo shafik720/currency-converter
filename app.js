@@ -18,7 +18,6 @@ for(let i=0; i<droplist.length; i++){
         droplist[i].insertAdjacentHTML('beforeend',optionTag);
         droplist[i].addEventListener('change',e=>{
             loadFlag(e.target);
-            showExchangeRate();
         })
     }
 }
@@ -50,8 +49,8 @@ function exchange(){
         
     }
 }
-function showExchangeRate(baseCode){
-    let url = ` https://v6.exchangerate-api.com/v6/1ae1edd2a56384f2549082e0/latest/${from.value}`;
+function showExchangeRate(){
+    let url = `https://v6.exchangerate-api.com/v6/4e52c37ac3dc20f13a920cef/latest/${from.value}`;
     fetch(url)
     .then(res=>res.json())
     .then(data=>{
@@ -69,7 +68,5 @@ function showExchangeRate(baseCode){
     });
 }
 
-// window.addEventListener('load',()=>{
-//     showExchangeRate();
-// })
+
 showExchangeRate();
